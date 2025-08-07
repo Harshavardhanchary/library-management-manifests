@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: harshavardhan303/library-manager-db:latest
+          image: harshavardhan303/library-manager-db:21
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: Root@1234

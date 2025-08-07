@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: library-app
-          image: harshavardhan303/library-manager-backend:20
+          image: harshavardhan303/library-manager-backend:21
           env:
             - name: DB_URL
               value: jdbc:mysql://db:3306/Library_Manager?connectTimeout=30000&useSSL=false&allowPublicKeyRetrieval=true
