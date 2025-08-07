@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-app
+  labels:
+    app: library-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: library-app
+  template:
+    metadata:
+      labels:
+        app: library-app
+    spec:
+      containers:
+        - name: library-app
+          image: harshavardhan303/library-manager-backend:latest  # Change to your actual image
+          env:
+            - name: DB_URL
+              value: jdbc:mysql://db:3306/Library_Manager?connectTimeout=30000&useSSL=false&allowPublicKeyRetrieval=true
+            - name: DB_USERNAME
+              value: dbuser
+            - name: DB_PASSWORD
+              value: Userpassword
+          ports:
+            - containerPort: 8080
+

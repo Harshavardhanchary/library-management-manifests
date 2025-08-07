@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: mysql
+          image: harshavardhan303/libary-manager-db:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: Root@1234
+            - name: MYSQL_DATABASE
+              value: Library_Manager
+            - name: MYSQL_USER
+              value: dbuser
+            - name: MYSQL_PASSWORD
+              value: Userpassword
+            - name: DB_USERNAME
+              value: dbuser
+            - name: DB_PASSWORD
+              value: Userpassword
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db-data
+          emptyDir: {}  # Replace with a PersistentVolumeClaim in production
+
