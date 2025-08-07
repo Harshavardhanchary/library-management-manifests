@@ -1,14 +1,13 @@
 #!/bin/bash
 
 BUILD_NUMBER=${BUILD_NUMBER:-$1}
-FILE="database/deploy.yaml"
-IMAGE_NAME="harshavardhan303/library-manager-db"
-
 if [ -z "$BUILD_NUMBER" ]; then
-  echo "❌ Error: No build number provided."
+  echo "Usage: $0 <build-number> or set BUILD_NUMBER env variable"
   exit 1
 fi
 
-sed -i "s|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${BUILD_NUMBER}|" "$FILE"
-echo "✅ Updated ${FILE} with image tag: ${IMAGE_NAME}:${BUILD_NUMBER}"
+# Use sed to replace the tag with the new build number
+sed -i "s|image: harshavardhan303/library-manager-db:.*|image: harshavardhan303/library-manager-db:${BUILD_NUMBER}|" database/deploy.yaml
+
+echo "✅ Updated backend image tag to :${BUILD_NUMBER}"
 
